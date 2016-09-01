@@ -1,0 +1,128 @@
+declare -a ARRAY
+declare -a ARRAY2
+echo “enter directory:”
+read DIRECTORY
+echo “enter volume:”
+read VOLUME
+
+
+to_array () {
+   dir=$1
+   local i=0
+   
+   if [ $2 = DIRECTORY ]; then 
+   for f in $(ls $dir)
+     do 
+       ARRAY[i]=$f
+       echo $f
+       ((i++))
+
+     done
+   fi
+
+    if [ $2 = VOLUME ]; then 
+       for f in $(ls $dir)
+     do 
+       ARRAY2[i]=$f
+       echo $f
+       ((i++))
+
+     done
+   fi
+}
+
+to_array $DIRECTORY DIRECTORY
+to_array $VOLUME VOLUME
+
+echo ${ARRAY[@]}
+echo ${ARRAY2[@]
+
+unset ‘ARRAY[@]’  #unsets whole array
+unset ‘ARRAY2[@]’
+###########################################################################
+
+to_array $DIRECTORY DIRECTORY
+to_array $VOLUME VOLUME
+
+echo ${ARRAY[@]}
+echo ${ARRAY2[@]
+
+echo “enter directory:”
+read DIRECTORY
+echo “enter volume:”
+read VOLUME
+
+###########################################################################
+
+#second thing to test is the functions and echo
+
+func () {
+   global_variable_name=a
+}
+
+#how do I catch the value echoed in the func?
+
+
+var1=global_variable_name
+
+var2=func
+
+echo $var
+
+############################################################################
+declare -a ARRAY
+#declare -a ARRAY2
+echo “enter directory:”
+read DIRECTORY
+#echo “enter volume:”
+#read VOLUME
+
+
+to_array () {
+   directory_name=$1
+   local array_var
+   local array_var_name=$2
+   local i=0
+
+   for f in $(ls $directory_name)
+     do 
+       array_var[i]=$f
+       echo $f
+       ((i++))
+
+     done
+   eval $array_var_name=“$array_var”
+}
+
+#(1)directory_name : The path of the directory 
+#(2)array_var_name : ARRAY1 or ARRAY2 global. 
+
+to_array $DIRECTORY DIRECTORY
+
+echo ${ARRAY[@]}
+
+############################################################
+
+SOME IMPROVEMENTS NEEDED
+
+############################################################
+some recursion(?) between the functions necessary, is this supported in bash?
+if the directory does not exist -> copy over entire folder
+directory exists -> go into the directory, and do the file copy process over.  
+keep an ARRAY3 of directories?
+if directory store in ARRAY3
+
+############################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
